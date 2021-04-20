@@ -17,21 +17,22 @@ namespace DrProvincesAPI.Repository
         }
         public Province GetProvince(int provinceId)
         {
-            throw new NotImplementedException();
+
+            return _dbContext.Provinces.FirstOrDefault(prov => prov.Id == provinceId); ;
         }
 
         public ICollection<Province> GetProvinces()
         {
-            throw new NotImplementedException();
+            return _dbContext.Provinces.OrderBy(x => x.Name).ToList();
         }
 
         public bool CreateProvince(Province province)
         {
             _dbContext.Provinces.Add(province);
-            
             return Save();
         }
-        bool UpdateProvince(Province province)
+
+        public bool UpdateProvince(Province province)
         {
             _dbContext.Provinces.Update(province);
 
@@ -49,14 +50,12 @@ namespace DrProvincesAPI.Repository
 
         public bool ProvinceExists(string name)
         {
-            throw new NotImplementedException();
+            return _dbContext.Provinces.Any(x => x.Name.ToLower().Trim() == name.ToLower().Trim());
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _dbContext.SaveChanges() >= 0 ? true : false;
         }
-
-       
     }
 }
