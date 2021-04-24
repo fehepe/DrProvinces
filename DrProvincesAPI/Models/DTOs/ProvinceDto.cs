@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DrProvincesAPI.Models
+namespace DrProvincesAPI.Models.DTOs
 {
-    public class Province
+    public class ProvinceDto
     {
         [Key]
-       
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

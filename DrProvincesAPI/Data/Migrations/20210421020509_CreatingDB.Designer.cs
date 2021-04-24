@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrProvincesAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210420020732_AddProvincesToDb")]
-    partial class AddProvincesToDb
+    [Migration("20210421020509_CreatingDB")]
+    partial class CreatingDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

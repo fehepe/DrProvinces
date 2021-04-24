@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DrProvincesAPI.Data;
 using DrProvincesAPI.Repository;
 using DrProvincesAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using AutoMapper;
+using DrProvincesAPI.Mapper;
+using System;
 
 namespace DrProvincesAPI
 {
@@ -27,11 +23,14 @@ namespace DrProvincesAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             
             services.AddScoped<IProvinceRepository, ProvinceRepository>();
+            services.AddAutoMapper(typeof(AutomapperProfile));
             services.AddDbContext<ApplicationDbContext>
                 (opt => opt.UseSqlServer(Configuration.GetConnectionString("DrProvinces")));
         }

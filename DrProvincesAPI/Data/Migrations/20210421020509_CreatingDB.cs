@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DrProvincesAPI.Migrations
 {
-    public partial class AddProvincesToDb : Migration
+    public partial class CreatingDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
