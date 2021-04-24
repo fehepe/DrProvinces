@@ -34,7 +34,7 @@ namespace DrProvincesAPI.Controllers
             return Ok(objDto);
         }
 
-        [HttpGet("{id}", Name = "GetProvince")]
+        [HttpGet("{id:int}", Name = "GetProvince")]
         public IActionResult GetProvince(int id)
         {
             var obj = _pRepo.GetProvince(id);
@@ -75,6 +75,27 @@ namespace DrProvincesAPI.Controllers
             }
 
             return CreatedAtRoute("GetProvince", new {id = provinceObj.Id }, provinceObj);
+        }
+
+        [HttpPatch("{id:int}", Name = "UpdateProvince")]
+        public IActionResult UpdateProvince(int id, [FromBody] ProvinceDto provinceDto)
+        {
+            if (provinceDto == null || id!= provinceDto.Id)
+            {
+                return BadRequest(ModelState);
+            }
+            if (_pRepo.ProvinceExists(provinceDto.Name))
+            {
+                ModelState.AddModelError("", "Province already Exist!");
+                return StatusCode(404, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+            return Ok();
         }
     }
 }
